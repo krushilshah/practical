@@ -2,8 +2,6 @@
 
 This Laravel 11 application implements an activity leaderboard system using Vue.js and Inertia.js with Bootstrap styling. The leaderboard tracks user activities like walking and running, awarding 20 points for each activity.
 
-![Leaderboard Screenshot](screenshot.png)
-
 ## Features
 
 - **User Authentication**: Laravel Breeze with Vue.js and Inertia.js
