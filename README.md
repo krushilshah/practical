@@ -2,6 +2,8 @@
 
 This Laravel 11 application implements an activity leaderboard system using Vue.js and Inertia.js with Bootstrap styling. The leaderboard tracks user activities like walking and running, awarding 20 points for each activity.
 
+![Leaderboard Screenshot](screenshot.png)
+
 ## Features
 
 - **User Authentication**: Laravel Breeze with Vue.js and Inertia.js
@@ -9,21 +11,22 @@ This Laravel 11 application implements an activity leaderboard system using Vue.
 - **Leaderboard**: Displays users ranked by total points
 - **Filtering**: Filter leaderboard by day, month, year, or all time
 - **Search**: Search for specific users by ID
-- **Real-time Updates**: Recalculate leaderboard on demand and add random activities for testing
+- **Real-time Updates**: Recalculate leaderboard on demand
+- **Add Activities**: Add activities randomly or for specific users
 
 ## Requirements
 
 - PHP 8.2+
 - Composer
 - Node.js and NPM
-- MySQL
+- MySQL/MariaDB
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd activity-leaderboard
+git clone https://github.com/krushilshah/practical.git
+cd practical
 ```
 
 2. Install PHP dependencies:
@@ -52,7 +55,7 @@ php artisan key:generate
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=activity_leaderboard
+DB_DATABASE=user_activity
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -61,10 +64,25 @@ DB_PASSWORD=
 ```bash
 php artisan migrate --seed
 ```
+   - Alternatively, you can import the SQL file provided in the database folder.
 
 8. Start the development server:
 ```bash
 php artisan serve
+```
+
+9. Access the application at: http://localhost
+
+## Important Note
+
+You need to run both the Laravel server and the Vite development server simultaneously:
+
+```bash
+# Terminal 1: Start Laravel server
+php artisan serve
+
+# Terminal 2: Start Vite server for frontend assets
+npm run dev
 ```
 
 ## Database Structure
@@ -86,5 +104,23 @@ The application uses three main tables:
 
 After seeding the database, you can log in with:
 
-- Email: admin@example.com
-- Password: password
+- **Email**: user@gmail.com
+- **Password**: 12345678
+
+## Usage
+
+1. Log in using the provided credentials
+2. View the leaderboard with user rankings based on activity points
+3. Filter by different time periods using the buttons
+4. Search for a specific user by ID
+5. Add activities:
+   - Click "Add Random" to add an activity for a random user
+   - Click "Add Activity" next to a specific user to add activity for them
+6. Click "Recalculate" to update the leaderboard after adding activities
+
+## Troubleshooting
+
+- If you encounter any issues with styling or JS not loading, make sure both `php artisan serve` and `npm run dev` are running in separate terminals.
+- For database connection issues, verify your MySQL server is running and the credentials in `.env` are correct.
+- If seeds aren't working, you can import the SQL file from the database folder directly.
+
